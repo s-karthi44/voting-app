@@ -1,0 +1,7 @@
+node_modules/
+.env
+*.log
+config.js
+fix_indexes.js
+check_users.js
+check_indexes.js

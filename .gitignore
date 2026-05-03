@@ -1,0 +1,39 @@
+# Dependencies
+node_modules/
+client/node_modules/
+server/node_modules/
+
+# Environment
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+client/.env
+server/.env
+
+# Build outputs
+dist/
+build/
+client/dist/
+
+# OS/Editor
+.DS_Store
+.vscode/
+.idea/
+*.suo
+*.sln
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+
+# Utility scripts (local only)
+fix_indexes.js
+check_indexes.js
+check_users.js
+server/config.js
+server/fix_indexes.js
+server/check_users.js
+server/check_indexes.js
