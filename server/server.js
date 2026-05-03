@@ -43,4 +43,6 @@ app.use(async (req, res, next) => {
   next();
 });
 
+app.get("/api/health", (req, res) => res.json({ status: "ok" }));
+
 export default app;
