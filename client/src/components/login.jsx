@@ -29,7 +29,8 @@ const Login = () => {
 
     try {
       const endpoint = isSignup ? '/api/auth/register' : '/api/auth/login';
-      const res = await axios.post(`${import.meta.env.VITE_API_BASE_URL}${endpoint}`, form);
+      const API_BASE = import.meta.env.VITE_API_BASE_URL || '';
+      const res = await axios.post(`${API_BASE}${endpoint}`, form);
 
       if (res.data.token) {
         localStorage.setItem('token', res.data.token);
@@ -43,9 +44,11 @@ const Login = () => {
       }, 1500);
     } catch (err) {
       console.error('Auth error:', err.response?.data || err.message);
-      const backendError = err.response?.data?.error;
-      const backendMessage = err.response?.data?.message;
-      setError(backendError ? `${backendMessage}: ${backendError}` : (backendMessage || 'Authentication failed'));
+      const data = err.response?.data;
+      const message = typeof data === 'string' ? data : (data?.message || data?.error || err.message);
+      const detail = data?.error && typeof data.error === 'object' ? JSON.stringify(data.error) : (data?.error || '');
+      
+      setError(detail ? `${message}: ${detail}` : message);
     } finally {
       setLoading(false);
     }

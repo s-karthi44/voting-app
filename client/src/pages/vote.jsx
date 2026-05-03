@@ -10,7 +10,8 @@ function Vote() {
 
   const fetchResults = async () => {
     try {
-      const res = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/api/vote/results`);
+      const API_BASE = import.meta.env.VITE_API_BASE_URL || '';
+      const res = await axios.get(`${API_BASE}/api/vote/results`);
       setOptions(res.data);
       const total = res.data.reduce((acc, curr) => acc + curr.votes, 0);
       setTotalVotes(total);
@@ -36,7 +37,8 @@ function Vote() {
     }
 
     try {
-      const res = await axios.post(`${import.meta.env.VITE_API_BASE_URL}/api/vote`, { language }, {
+      const API_BASE = import.meta.env.VITE_API_BASE_URL || '';
+      const res = await axios.post(`${API_BASE}/api/vote`, { language }, {
         headers: { Authorization: `Bearer ${token}` }
       });
       alert(res.data.message);
